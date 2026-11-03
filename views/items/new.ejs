@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+
+<h1>List an item for auction</h1>
+
+<form action="/items" method="POST" class="form">
+  <label>Title <input type="text" name="title" required /></label>
+  <label>Description <textarea name="description" rows="4" required></textarea></label>
+  <label>
+    Category
+    <select name="category">
+      <% categories.forEach(function (c) { %>
+        <option value="<%= c %>"><%= c %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Image URL (optional) <input type="url" name="imageUrl" placeholder="https://…" /></label>
+  <label>Starting price (USD) <input type="number" name="startingPrice" step="0.01" min="0" required /></label>
+  <label>Duration (hours) <input type="number" name="durationHours" min="1" value="24" required /></label>
+  <button type="submit">Start auction</button>
+</form>
+
+<%- include('../partials/footer') %>

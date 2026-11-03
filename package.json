@@ -1,0 +1,26 @@
+{
+  "name": "online-auction-platform",
+  "version": "1.0.0",
+  "description": "Online auction platform where users list items and place bids in real time. Built with Node.js, Express and MongoDB following MVC architecture.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node scripts/seed.js"
+  },
+  "keywords": ["express", "mongodb", "mongoose", "mvc", "auction", "ejs"],
+  "author": "Afrid Mohammed",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

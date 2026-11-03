@@ -1,0 +1,93 @@
+:root {
+  --ink: #1d2733;
+  --muted: #68707c;
+  --accent: #2456c8;
+  --accent-dark: #1a41a0;
+  --danger: #b42318;
+  --success-bg: #e6f4ea;
+  --success-ink: #146c2e;
+  --error-bg: #fdecea;
+  --error-ink: #8c1d18;
+  --card-border: #dde2ea;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: #f7f8fa;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.brand { font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+.site-header nav { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.nav-user { color: var(--muted); }
+.inline-form { display: inline; }
+.link-button {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--accent); font: inherit;
+}
+
+.container { max-width: 1024px; margin: 0 auto; padding: 1.25rem; }
+.site-footer { text-align: center; color: var(--muted); padding: 2rem 1rem; }
+
+.flash { padding: 0.7rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+.flash-success { background: var(--success-bg); color: var(--success-ink); }
+.flash-error { background: var(--error-bg); color: var(--error-ink); }
+
+.filters { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.filters input[type="search"] { flex: 1 1 220px; }
+
+input, select, textarea, button {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+}
+button {
+  background: var(--accent); color: #fff; border: none; cursor: pointer;
+}
+button:hover { background: var(--accent-dark); }
+button.danger { background: var(--danger); margin-top: 1rem; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.card { background: #fff; border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; }
+.card-img { width: 100%; height: 150px; object-fit: cover; display: block; }
+.card-body { padding: 0.9rem 1rem; }
+.card-body h2 { margin: 0 0 0.35rem; font-size: 1.05rem; }
+
+.price { font-size: 1.2rem; font-weight: 700; }
+.muted { color: var(--muted); }
+
+.form { display: grid; gap: 0.8rem; max-width: 480px; }
+.form label { display: grid; gap: 0.3rem; }
+
+.item-detail .detail-img { max-width: 100%; border-radius: 8px; }
+.bid-form { display: flex; gap: 0.6rem; align-items: end; margin: 1rem 0; flex-wrap: wrap; }
+.bid-form label { display: grid; gap: 0.3rem; }
+.bid-history { list-style: none; padding: 0; }
+.bid-history li { padding: 0.45rem 0; border-bottom: 1px solid var(--card-border); }
+
+@media (max-width: 600px) {
+  .site-header { flex-direction: column; align-items: flex-start; }
+  .bid-form { flex-direction: column; align-items: stretch; }
+}

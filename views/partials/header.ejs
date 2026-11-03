@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> · Online Auction Platform</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/items">Online Auction Platform</a>
+    <nav>
+      <a href="/items">Browse auctions</a>
+      <% if (currentUser) { %>
+        <a href="/items/new">List an item</a>
+        <span class="nav-user">Hi, <%= currentUser.name %></span>
+        <form action="/auth/logout" method="POST" class="inline-form">
+          <button type="submit" class="link-button">Log out</button>
+        </form>
+      <% } else { %>
+        <a href="/auth/login">Log in</a>
+        <a href="/auth/register">Register</a>
+      <% } %>
+    </nav>
+  </header>
+  <main class="container">
+    <% if (success && success.length) { %>
+      <div class="flash flash-success"><%= success[0] %></div>
+    <% } %>
+    <% if (error && error.length) { %>
+      <div class="flash flash-error"><%= error[0] %></div>
+    <% } %>

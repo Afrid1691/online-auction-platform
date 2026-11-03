@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+
+<article class="item-detail">
+  <% if (item.imageUrl) { %>
+    <img src="<%= item.imageUrl %>" alt="<%= item.title %>" class="detail-img" />
+  <% } %>
+  <h1><%= item.title %></h1>
+  <p class="muted"><%= item.category %> · Sold by <%= item.seller.name %></p>
+  <p><%= item.description %></p>
+  <p class="price">Current bid: $<%= item.currentPrice.toFixed(2) %></p>
+  <% if (item.highestBidder) { %>
+    <p class="muted">Highest bidder: <%= item.highestBidder.name %></p>
+  <% } %>
+  <p class="muted countdown" data-ends-at="<%= item.endsAt.toISOString() %>">
+    Ends <%= item.endsAt.toLocaleString() %>
+  </p>
+
+  <% if (item.isActive) { %>
+    <% if (currentUser) { %>
+      <form action="/items/<%= item._id %>/bids" method="POST" class="bid-form">
+        <label>
+          Your bid (USD)
+          <input type="number" name="amount" step="0.01" min="<%= (item.currentPrice + 0.01).toFixed(2) %>" required />
+        </label>
+        <button type="submit">Place bid</button>
+      </form>
+    <% } else { %>
+      <p><a href="/auth/login">Log in</a> to place a bid.</p>
+    <% } %>
+  <% } else { %>
+    <p class="flash flash-error">This auction has ended.</p>
+  <% } %>
+
+  <% if (currentUser && item.seller._id.equals(currentUser._id || currentUser.id)) { %>
+    <form action="/items/<%= item._id %>/delete" method="POST">
+      <button type="submit" class="danger">Delete listing</button>
+    </form>
+  <% } %>
+
+  <h2>Bid history</h2>
+  <% if (!bids.length) { %>
+    <p class="muted">No bids yet. Starting price is $<%= item.startingPrice.toFixed(2) %>.</p>
+  <% } %>
+  <ul class="bid-history">
+    <% bids.forEach(function (bid) { %>
+      <li>
+        <strong>$<%= bid.amount.toFixed(2) %></strong>
+        by <%= bid.bidder ? bid.bidder.name : 'Unknown' %>
+        <span class="muted">· <%= new Date(bid.createdAt).toLocaleString() %></span>
+      </li>
+    <% }) %>
+  </ul>
+</article>
+
+<%- include('../partials/footer') %>
